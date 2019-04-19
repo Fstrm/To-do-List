@@ -4,9 +4,47 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:To_do_List"
+		xmlns:vm="clr-namespace:To_do_List.ViewModels"
         mc:Ignorable="d"
-        Title="To-do List" Height="400" Width="300">
-    <Grid>
-        
-    </Grid>
+        Title="To-do List" Height="400" Width="380">
+	<Window.DataContext>
+		<vm:VM/>
+	</Window.DataContext>
+
+	<Border Padding="18">
+		<StackPanel VerticalAlignment="Top" Height="300">
+			<TextBox x:Name="TaskBox" Height="30" Width="322" Margin="0 0 0 15"
+					 BorderBrush="#65b016" BorderThickness="1.2"
+					 Text="I'm going to..." FontStyle="Italic"
+					 VerticalContentAlignment="Center"
+					 HorizontalContentAlignment="Center"
+					 Foreground="#4b4f3e">
+				<TextBox.InputBindings>
+					<KeyBinding Command="{Binding Path=AddTask}"
+								CommandParameter="{Binding ElementName=TaskBox, Path=Text}"
+								Key="Enter"/>
+				</TextBox.InputBindings>
+			</TextBox>
+
+			<ListBox x:Name="TaskListBox" ItemsSource="{Binding Path=TaskList}"
+					 MaxHeight="268" AlternationCount="100">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Grid Height="18" Width="{Binding ElementName=TaskListBox, Path=Width}">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="auto"/>
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Grid.Column="0" Text="{Binding}" Width="298" Height="16"/>
+							<CheckBox Grid.Column="1"
+									  Command="{Binding Path=DataContext.RemoveTask, RelativeSource={RelativeSource AncestorType=ListBox}}"
+									  CommandParameter="{Binding Path=(ItemsControl.AlternationIndex),
+														RelativeSource={RelativeSource AncestorType=ListBoxItem}}"/>
+						</Grid>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</StackPanel>
+	</Border>
 </Window>
