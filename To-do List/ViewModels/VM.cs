@@ -4,14 +4,13 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
-using To_do_List.Models;
 
 namespace To_do_List.ViewModels
 {
 	class VM
 	{
 		private string path;
-
+		/* Implement later*/
 		//public ObservableCollection<TaskItem> TaskList { get; set; }
 		public ObservableCollection<string> TaskList { get; set; }
 
@@ -66,7 +65,6 @@ namespace To_do_List.ViewModels
 					TaskList.Add(task);
 				}
 			}
-			MessageBox.Show(path);
 		}
 	}
 }

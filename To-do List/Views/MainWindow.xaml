@@ -19,7 +19,7 @@
 	
 	<Border Padding="18">
 		<StackPanel VerticalAlignment="Top" Height="300">
-			<TextBox x:Name="TaskBox" Height="30" Width="322" Margin="0 0 0 15"
+			<TextBox x:Name="TaskBox" Height="30" Width="322" Margin="0 0 0 6"
 					 BorderBrush="#65b016" BorderThickness="1.2"
 					 Text="I'm going to..." FontStyle="Italic"
 					 VerticalContentAlignment="Center"
@@ -32,6 +32,9 @@
 				</TextBox.InputBindings>
 			</TextBox>
 
+			<Label Content="(Press F5 to save tasks)" FontSize="10" HorizontalAlignment="Center"
+				   Foreground="Gray" Margin="0 0 0 3"></Label>
+			
 			<ListBox x:Name="TaskListBox" ItemsSource="{Binding TaskList}"
 					 MaxHeight="268" AlternationCount="100">
 				<ListBox.ItemTemplate>
